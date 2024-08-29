@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/wlynxg/anet"
+	"github.com/vikulin/anet"
 )
 
 func NetInterface() {
@@ -49,4 +49,8 @@ func AnetInterfaceAddrs() {
 	for _, addr := range addrs {
 		log.Println(addr)
 	}
+}
+
+func AnetGetAndroidApiLevel() {
+        log.Println(anet.GetAndroidApiLevel())
 }
