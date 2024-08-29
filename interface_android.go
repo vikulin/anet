@@ -40,7 +40,7 @@ func Interfaces() ([]net.Interface, error) {
 	}
 	if len(ift) != 0 {
 		zoneCache.update(ift, true)
-		zoneCacheX.update(ift, true)
+		//zoneCacheX.update(ift, true)
 	}
 	return ift, nil
 }
@@ -97,7 +97,7 @@ func InterfaceByName(name string) (*net.Interface, error) {
 	}
 	if len(ift) != 0 {
 		zoneCache.update(ift, true)
-		zoneCacheX.update(ift, true)
+		//zoneCacheX.update(ift, true)
 	}
 	for _, ifi := range ift {
 		if name == ifi.Name {
