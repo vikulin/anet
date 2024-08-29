@@ -51,7 +51,7 @@ func Interfaces() ([]net.Interface, error) {
 // The returned list does not identify the associated interface; use
 // Interfaces and Interface.Addrs for more detail.
 func InterfaceAddrs() ([]net.Addr, error) {
-	if androidApiLevel() < android11ApiLevel {
+	if androidApiLevel()() < android11ApiLevel {
 		return net.InterfaceAddrs()
 	}
 
@@ -68,7 +68,7 @@ func InterfaceAddrs() ([]net.Addr, error) {
 // sharing the logical data link; for more precision use
 // InterfaceByName.
 func InterfaceByIndex(index int) (*net.Interface, error) {
-	if androidApiLevel() < android11ApiLevel {
+	if androidApiLevel()() < android11ApiLevel {
 		return net.InterfaceByIndex(index)
 	}
 
@@ -114,7 +114,7 @@ func InterfaceAddrsByInterface(ifi *net.Interface) ([]net.Addr, error) {
 		return nil, &net.OpError{Op: "route", Net: "ip+net", Source: nil, Addr: nil, Err: errInvalidInterface}
 	}
 
-	if androidApiLevel() < android11ApiLevel {
+	if androidApiLevel()() < android11ApiLevel {
 		return ifi.Addrs()
 	}
 
@@ -420,7 +420,7 @@ func nameToFlags(name string) (net.Flags, error) {
 
 // Returns the API level of the device we're actually running on, or -1 on failure.
 // The returned value is equivalent to the Java Build.VERSION.SDK_INT API.
-var androidApiLevel = func() func() int {
+func androidApiLevel() func() int {
 	var apiLevel int
 	var once sync.Once
 
@@ -428,7 +428,10 @@ var androidApiLevel = func() func() int {
 		once.Do(func() {
 			apiLevel = int(C.android_get_device_api_level())
 		})
-
 		return apiLevel
 	}
-}()
+}
+
+func GetAndroidApiLevel() int {
+	return androidApiLevel()()
+}
