@@ -29,3 +29,9 @@ func InterfaceAddrsByInterface(ifi *net.Interface) ([]net.Addr, error) {
 
 // Deprecated: Android version is detected automatically.
 func SetAndroidVersion(version uint) {}
+
+func AndroidApiLevel() func() int {
+	return func() int {
+		return -1
+	}
+}
