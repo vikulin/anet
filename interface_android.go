@@ -30,7 +30,7 @@ type ifReq [40]byte
 
 // Interfaces returns a list of the system's network interfaces.
 func Interfaces() ([]net.Interface, error) {
-	if androidApiLevel() < android11ApiLevel {
+	if androidApiLevel()() < android11ApiLevel {
 		return net.Interfaces()
 	}
 
