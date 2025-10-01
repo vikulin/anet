@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/wlynxg/anet"
+	"github.com/vikulin/anet"
 )
 
 func NetInterface() {
