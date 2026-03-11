@@ -1,3 +1,3 @@
-module github.com/wlynxg/anet
+module github.com/vikulin/anet
 
 go 1.20
